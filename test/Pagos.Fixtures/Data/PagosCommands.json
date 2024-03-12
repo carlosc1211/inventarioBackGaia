@@ -1,0 +1,25 @@
+{
+    "CrearPagoCommand": {
+        "idTransaccion": "123456",
+        "fechaHoraTransaccion": "2023-12-28T10:56:37",
+        "pasarelaPago": "CaixaBank",
+        "codigoPedidoId": "112233-A",
+        "tipoTarjeta": "Visa",
+        "importe": 112,
+        "moneda": {
+            "codigo": "Eur",
+            "nombre": "Euro",
+            "simbolo": "€"
+        },
+        "conciliado": false,
+        "fechaHoraConciliacion": "2023-12-28T12:56:37",
+        "avisado": true,
+        "fechaHolaAvisado": "2023-12-28T12:56:37"
+    },
+    "ReconciliarPagoCommand": {
+        "codigoPedidoId": "112233-A"
+    },
+    "ReconciliarPagoNoExisteCommand": {
+        "codigoPedidoId": "112233-AA"
+    }
+}

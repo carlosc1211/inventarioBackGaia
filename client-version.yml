@@ -1,0 +1,4 @@
+next-version: 1.3.0
+commit-message-incrementing: Disabled
+increment: None
+update-build-number: false
