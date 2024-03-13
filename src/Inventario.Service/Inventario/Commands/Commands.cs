@@ -1,5 +1,6 @@
 using Inventario.API.Models;
 using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.Models;
 using MediatR;
 
 namespace Inventario.Service.Inventario.Commands;
@@ -15,7 +16,7 @@ public static class Commands
         public string Apellidos { get; set; }
     }
 
-    public class LoginCommand : IRequest<string>
+    public class LoginCommand : IRequest<Token>
     {
         public string Usuario { get; set; }
         public string Contrasenya { get; set; }

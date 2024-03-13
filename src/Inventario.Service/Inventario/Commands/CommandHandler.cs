@@ -2,6 +2,7 @@ using AutoMapper;
 using Inventario.API.Models;
 using Inventario.Domain.AggretatesRoot;
 using Inventario.Domain.Interfaces.Repositories;
+using Inventario.Domain.Models;
 using Inventario.Infrastructure.ESEntityFramework;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -15,15 +16,15 @@ using static Inventario.Service.Inventario.Commands.Commands;
 namespace Inventario.Service.Inventario.Commands;
 
 public class CommandHandler : IRequestHandler<CrearUsuarioCommand, Usuario>,
-                                IRequestHandler<LoginCommand, string>
+                                IRequestHandler<LoginCommand, Token>
 {
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IMapper _mapper;
     private readonly DbContextInventario _dbContextInventario;
     private readonly IConfiguration _configuration;
 
-    public CommandHandler(IUsuarioRepository usuarioRepository, 
-                          IMapper mapper, 
+    public CommandHandler(IUsuarioRepository usuarioRepository,
+                          IMapper mapper,
                           DbContextInventario dbContextInventario,
                           IConfiguration configuration)
     {
@@ -69,7 +70,7 @@ public class CommandHandler : IRequestHandler<CrearUsuarioCommand, Usuario>,
         }
     }
 
-    public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Token> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -86,7 +87,7 @@ public class CommandHandler : IRequestHandler<CrearUsuarioCommand, Usuario>,
                 };
 
                 var usuario = _usuarioRepository.ObtenerTokenUsuario(login);
-                
+
                 if (usuario == null)
                     throw new ArgumentException($"No se encontró el usuario: {request.Usuario}");
 
@@ -100,7 +101,7 @@ public class CommandHandler : IRequestHandler<CrearUsuarioCommand, Usuario>,
         }
     }
 
-    private string ObtenerToken(Usuario usuario)
+    private Token ObtenerToken(Usuario usuario)
     {
         //TODO -> VALIDAR CREDENCIALES CONTRA EL REPOSITORIO
         var clave = _configuration["Jwt:Key"];
@@ -128,7 +129,11 @@ public class CommandHandler : IRequestHandler<CrearUsuarioCommand, Usuario>,
         // Serializar el token a una cadena
         var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
         if (tokenString != null)
-            return tokenString;
+            return new Token()
+            {
+                token = tokenString,
+            };
+
         return null;
     }
 }
