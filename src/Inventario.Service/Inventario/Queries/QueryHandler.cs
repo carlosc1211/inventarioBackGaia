@@ -1,4 +1,4 @@
-using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.AggregatesRoot;
 using Inventario.Domain.Interfaces.Repositories;
 using Inventario.Domain.Interfaces.Services;
 using MediatR;

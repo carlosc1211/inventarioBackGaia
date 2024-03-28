@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Inventario.Domain.AggretatesRoot
+namespace Inventario.Domain.AggregatesRoot
 {
     [ExcludeFromCodeCoverage]
     public class Usuario

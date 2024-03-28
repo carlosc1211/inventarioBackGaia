@@ -1,5 +1,4 @@
-using Inventario.API.Models;
-using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.AggregatesRoot;
 using Inventario.Domain.Models;
 using MediatR;
 

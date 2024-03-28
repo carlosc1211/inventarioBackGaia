@@ -1,11 +1,9 @@
-using System.Threading.Tasks;
-using Catalogo.API.Shared;
-using Inventario.API.Models;
+using Inventario.API.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using System.Threading.Tasks;
 using static Inventario.Service.Inventario.Commands.Commands;
-using static Inventario.Service.Inventario.Queries.QueryModels;
 
 namespace Inventario.API.Controllers;
 

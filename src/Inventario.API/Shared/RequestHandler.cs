@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Catalogo.API.Shared
+namespace Inventario.API.Shared
 {
 	public static class RequestHandler
 	{

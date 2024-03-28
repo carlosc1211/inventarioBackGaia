@@ -1,6 +1,6 @@
 using AutoMapper;
 using Inventario.API.Models;
-using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.AggregatesRoot;
 using Inventario.Domain.Interfaces.Repositories;
 using Inventario.Domain.Models;
 using Inventario.Infrastructure.ESEntityFramework;
@@ -40,28 +40,23 @@ public class CommandHandler : IRequestHandler<CrearUsuarioCommand, Usuario>,
         {
             var usuarioExistente = _usuarioRepository.GetUsuarioById(request.Id);
 
-            if (usuarioExistente == null)
-            {
-                using (TransactionScope transaction = new TransactionScope(
+            if (usuarioExistente != null)
+                throw new ArgumentNullException($"El usuario {request.Nombre_Usuario} ya ha sido creado");
+
+            using (TransactionScope transaction = new TransactionScope(
                 TransactionScopeOption.Required,
                 new TransactionOptions { IsolationLevel = IsolationLevel.Serializable },
                 TransactionScopeAsyncFlowOption.Enabled))
-                {
-                    var nuevoUsuario = Usuario.Crear(
-                                    request.Nombre, request.Apellidos, request.Nombre_Usuario, request.Contrasenya);
-
-                    _usuarioRepository.Add(nuevoUsuario);
-                    await _dbContextInventario.SaveChangesAsync();
-
-                    transaction.Complete();
-
-                    return nuevoUsuario;
-                }
-
-            }
-            else
             {
-                return null;
+                var nuevoUsuario = Usuario.Crear(
+                                request.Nombre, request.Apellidos, request.Nombre_Usuario, request.Contrasenya);
+
+                _usuarioRepository.Add(nuevoUsuario);
+                await _dbContextInventario.SaveChangesAsync();
+
+                transaction.Complete();
+
+                return nuevoUsuario;
             }
         }
         catch (Exception ex)

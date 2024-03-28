@@ -1,5 +1,5 @@
 using MediatR;
-using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.AggregatesRoot;
 
 namespace Inventario.Service.Inventario.Queries;
 

@@ -1,4 +1,4 @@
-using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.AggregatesRoot;
 
 namespace Inventario.Domain.Interfaces.Services
 {

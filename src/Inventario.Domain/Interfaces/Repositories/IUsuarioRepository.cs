@@ -1,5 +1,5 @@
 using Inventario.API.Models;
-using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.AggregatesRoot;
 
 namespace Inventario.Domain.Interfaces.Repositories
 {

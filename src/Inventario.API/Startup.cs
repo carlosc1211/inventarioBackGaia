@@ -1,10 +1,10 @@
 using AutoMapper;
 using AutoMapper.EquivalencyExpression;
-using Inventario.API.Extensions;
 using Inventario.Domain.Interfaces.Repositories;
 using Inventario.Domain.Interfaces.Services;
 using Inventario.Infrastructure.ESEntityFramework;
 using Inventario.Infrastructure.Repositories;
+using Inventario.Service.Articulos;
 using Inventario.Service.AutoMapper;
 using Inventario.Service.Inventario;
 using Inventario.Service.Inventario.Commands;
@@ -62,9 +62,11 @@ namespace Inventario.API
 					});
 			});
 
-			services.AddTransient<IUsuarioService, UsuarioService>();
+			services.AddTransient<IUsuarioService, InventarioService>();
 			services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-            
+            services.AddTransient<IArticuloService, ArticuloService>();
+            services.AddTransient<IArticuloRepository, ArticuloRepository>();
+
             var mapperConfig = new MapperConfiguration(cfg =>
 			{
 				cfg.AddCollectionMappers();

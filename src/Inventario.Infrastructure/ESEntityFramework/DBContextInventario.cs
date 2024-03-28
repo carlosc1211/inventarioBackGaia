@@ -1,4 +1,4 @@
-using Inventario.Domain.AggretatesRoot;
+using Inventario.Domain.AggregatesRoot;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Diagnostics.CodeAnalysis;
@@ -9,6 +9,7 @@ namespace Inventario.Infrastructure.ESEntityFramework
 	public class DbContextInventario : DbContext
 	{
 		public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Articulo> Articulo { get; set; }
 		public DbContextInventario(DbContextOptions<DbContextInventario> options)  : base(options)
 		{
 		}
